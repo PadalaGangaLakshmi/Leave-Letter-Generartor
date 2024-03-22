@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Approval</title>
+<style>
+    /* Style for the body to set background color and font-family */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the header */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the paragraphs */
+p {
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Style for the forms */
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Style for the hidden input fields */
+input[type="hidden"] {
+    display: none;
+}
+
+/* Style for the submit buttons */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 16px;
+}
+
+/* Hover effect for submit buttons */
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style for the form container */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+</style>
+</head>
+<body>
+    <!-- <h1>Leave Letter for Approval</h1>
+    <p>Name: {{ name }}</p>
+    <p>Branch: {{ branch }}</p>
+    <p>Date: {{ date }}</p>
+    <p>Place: {{ place }}</p>
+    <p>Reason: {{ reason }}</p>
+    <p>Address: {{ address }}</p> -->
+
+    <h1>Leave Letter</h1>
+    <p>I am {{ name }},</p>
+    <p>
+        I am from {{branch}} writing to request a leave of absence on {{ date }} due to {{ reason }}. please grant me permission for one day, and I will make sure to complete any pending work before I leave.
+    </p>
+    <p>
+        Thanking  you.
+    </p>
+    <p>yours obediently,</p>
+    <p>{{ name }}</p>
+    
+    <form method="POST" action="/approve">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="branch" value="{{ branch }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        <input type="hidden" name="place" value="{{ place }}">
+        <input type="hidden" name="reason" value="{{ reason }}">
+        <input type="hidden" name="address" value="{{ address }}">
+        <input type="submit" name="approve" value="Approve">
+
+    </form>
+    <form method="POST" action="/reject">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="branch" value="{{ branch }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        <input type="hidden" name="place" value="{{ place }}">
+        <input type="hidden" name="reason" value="{{ reason }}">
+        <input type="hidden" name="address" value="{{ address }}">
+
+        <input type="submit" name="reject" value="Reject">
+    </form>
+</body>
+</html>
